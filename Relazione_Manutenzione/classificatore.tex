@@ -1,0 +1,16 @@
+\textbf{Addestramento del Classificatore}
+
+Per l'addestramento del classificatore sono stati utilizzati dati provenienti da 5 voli, di cui uno senza guasti e gli altri quattro con guasti simulati su uno dei quattro motori. I dati considerati includono le variazioni nei parametri di posizione (Dx, Dy, Dz), orientamento (Yaw, Pitch, Roll) e le relative velocità angolari (Dyaw, Dpitch, Droll).
+
+\textbf{Estrazione delle Feature}
+
+Attraverso l'utilizzo del Diagnostic Feature Designer, sono state estratte le feature dai dati sia nel dominio del tempo che nel dominio della frequenza. Le feature estratte sono state etichettate in base alla presenza o assenza di guasti, aggiungendo una colonna ai dati in cui il valore '0' indica l'assenza di guasti e '1' la loro presenza. Successivamente, è stato eseguito il ranking delle feature e le migliori 70 sono state selezionate per il successivo addestramento del classificatore.
+
+\textbf{Addestramento del Classificatore}
+Utilizzando il ClassificationLearner, sono stati addestrati diversi classificatori ad albero, tra cui Fine Tree, Medium Tree, Coarse Tree e Optimizabled Tree. Dopo la fase di test, i due classificatori con la maggiore accuratezza sono stati identificati come Coarse Tree e Optimizabled Tree.
+
+\textbf{Implementazione del Classificatore sulla PX4}
+Inizialmente, si è tentato di implementare il classificatore ad albero Coarse Tree sulla PX4, ma la limitata capacità di memoria del flight controller ha impedito il corretto caricamento del codice, principalmente a causa della complessità della feature associata al rapporto segnale-rumore (SNR). Di conseguenza, si è optato per l'implementazione del classificatore Optimizabled Tree, che ha mostrato una maggiore efficienza dal punto di vista della memoria.
+
+\textbf{Descrizione del Classificatore Implementato}
+Il modello Simulink del flight controller è stato integrato con una funzione MATLAB che implementa il classificatore Optimizabled Tree. La funzione riceve in input le variazioni nei parametri di posizione (EdX, EdZ) e orientamento (EdRoll), e restituisce un valore di allarme ('1' se viene rilevata un'anomalia, '0' altrimenti).

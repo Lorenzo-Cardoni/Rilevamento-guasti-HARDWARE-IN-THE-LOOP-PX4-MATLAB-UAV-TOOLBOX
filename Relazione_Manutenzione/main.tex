@@ -1,0 +1,132 @@
+\documentclass [a4paper,12pt]{report}
+
+\usepackage{geometry}
+\geometry{a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm,%
+          heightrounded,bindingoffset=5mm}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage[italian]{varioref}
+\usepackage{braket}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{rotating}
+\usepackage{tabularx}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{xcolor} % Per utilizzare i colori personalizzati
+\usepackage[utf8]{inputenc}
+
+
+\captionsetup{tableposition=top,figureposition=bottom,font=small, format=hang,labelfont={sf,bf}}
+\usepackage{float}
+\usepackage{mathtools}
+% \usepackage[autostyle,italian=guillemets,⟨altre opzioni⟩]{csquotes} \usepackage[⟨opzioni⟩,backend=biber]{biblatex}
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norma}{\lVert}{\rVert}
+
+\input{files/frontbackmatters/definitions}
+
+\begin{document}
+
+\pagestyle{fancy}
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{} \fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[LO]{\bfseries\rightmark}
+\fancyhead[RE]{\bfseries\leftmark}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+\fancyhead{}
+\renewcommand{\headrulewidth}{0pt}}
+
+\thispagestyle{empty}
+
+%titolo
+\begin{center}
+    \large
+    \textit{UNIVERSITÀ POLITECNICA DELLE MARCHE\\}
+  %\normalsize
+    \vspace*{.5cm}
+  \textit{ FACOLTÀ DI INGEGNERIA \\}  
+\end{center}
+
+%immagine logo univpm
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=5cm]{files/logo.png}
+\end{figure}
+
+%titolo tesi e corso di università
+\begin{center}
+%inserimento di distanza 0.5 cm
+  \vspace*{0.5cm} 
+  \emph{Corso di Laurea Magistrale in\\Ingegneria Informatica e dell'Automazione\\}
+	\hfill \\
+  \vspace*{.75cm} \large %true
+  \emph{\textbf{HARDWARE-IN-THE-LOOP PX4 – MATLAB UAV TOOLBOX.}}
+  \par
+\noindent\rule{.3\textwidth}{1pt}\par\vspace{0.5cm}
+\emph{\textbf{\textit{HARDWARE-IN-THE-LOOP PX4 – MATLAB UAV TOOLBOX}}}
+\end{center}
+
+
+%flushleft vuol dire testo allineato a sinistra
+%textsc -> LETTERE MAIUSCOLE
+
+\vspace{2cm}
+\begin{flushleft}
+Professore:\\\textsc{\textbf{Prof. Freddi Alessandro}}\\
+\end{flushleft}
+\vspace*{-1.55cm}
+\begin{flushright}
+Studente:\\\textsc{\textbf{Novelli Giovanni}}\\     
+Studente:\\\textsc{\textbf{Cardoni Lorenzo}}\\ 
+\end{flushright}
+\vspace*{3.8cm}
+%ANNO ACCADEMICO
+\begin{center}
+\large{\textsc{Anno Accademico 2023-2024}}
+\end{center} \clearpage
+
+
+%mi crea l'indice
+\tableofcontents
+
+
+%setta il tipo di contatore per l'indice
+\setcounter{secnumdepth}{3}
+\clearemptydoublepage
+\include{chapter1} \clearemptydoublepage
+\include{chapter2} \clearemptydoublepage
+\include{chapter3} \clearemptydoublepage
+\include{chapter4} \clearemptydoublepage
+\include{chapter5} \clearemptydoublepage
+\include{chapter6} \clearemptydoublepage
+\include{UserManual} \clearemptydoublepage
+%\addcontentsline{toc}{chapter}{Elenco delle figure}%
+
+
+%possibilità di poter riusare le cit per qualsiasi progetto latex
+\nocite{*}
+
+
+\clearemptydoublepage
+
+\addcontentsline{toc}{chapter}{Bibliography}
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{files/frontbackmatters/bibliography}
+
+\listoffigures
+
+
+\end{document}
